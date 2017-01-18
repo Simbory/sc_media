@@ -6,9 +6,12 @@ import (
 )
 
 func tokenValid(ctx *mego.Context) bool {
-	accessToken := ctx.Request().Header.Get("Media-Upload-AccessToken")
-	if len(config.Token()) == 0 || accessToken != config.Token() {
+	if ctx == nil {
 		return false
 	}
-	return true
+	if len(config.Token()) == 0 {
+		return true
+	}
+	accessToken := ctx.Request().Header.Get("Media-Upload-AccessToken")
+	return config.Token() == accessToken
 }

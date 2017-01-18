@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+    <path_prefix>D:/Websites/MillenniumHotel/MediaServer</path_prefix>
+    <token>369E6BBD-0B80-4293-A8BA-B1C746AB385D</token>
+    <media_prefix>/mhb-media</media_prefix>
+    <mimes>
+        <mime ext=".svg" contentType="image/svg+xml" />
+        <mime ext=".svgz" contentType="image/svg+xml" />
+    </mimes>
+    <cache_dir>D:/Websites/MillenniumHotel/MediaServer/mediaCache/</cache_dir>
+    <src_dir>D:/Websites/MillenniumHotel/MediaServer/sitecore/media library/</src_dir>
+</config>

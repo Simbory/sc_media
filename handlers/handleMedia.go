@@ -15,7 +15,15 @@ import (
 )
 
 func init() {
-	mego.Get(strings.TrimRight(config.MediaPrefix(), "/")+"/*pathInfo", handleMedia)
+	mediaPrefixes := config.MediaPrefix()
+	if len(mediaPrefixes) > 0 {
+		for _, prefix := range mediaPrefixes {
+			if len(prefix) == 0 {
+				continue
+			}
+			mego.Get(strings.TrimRight(prefix, "/")+"/*pathInfo", handleMedia)
+		}
+	}
 }
 
 func handleMedia(ctx *mego.Context) interface{} {

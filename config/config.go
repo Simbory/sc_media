@@ -10,7 +10,9 @@ import (
 type siteConfig struct {
 	PathPrefix  string `xml:"path_prefix"`
 	Token       string `xml:"token"`
-	MediaPrefix string `xml:"media_prefix"`
+	MediaPrefix struct{
+		List []string `xml:"prefix"`
+	} `xml:"media_prefixs"`
 	Mimes struct {
 		List []struct{
 			Ext         string    `xml:"ext,attr"`
@@ -37,11 +39,11 @@ func Token() string {
 	return cfgData.Token
 }
 
-func MediaPrefix() string {
+func MediaPrefix() []string {
 	if cfgData == nil {
-		return ""
+		return nil
 	}
-	return cfgData.MediaPrefix
+	return cfgData.MediaPrefix.List
 }
 
 func CacheDir() string {
@@ -80,7 +82,7 @@ func init() {
 		println("Invalid config section: token cannot be empty.")
 		return
 	}
-	if len(cfg.MediaPrefix) == 0 {
+	if len(cfg.MediaPrefix.List) == 0 {
 		println("Invalid config section: media_prefix cannot be empty.")
 		return
 	}
